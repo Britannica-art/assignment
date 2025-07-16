@@ -1,17 +1,27 @@
-
 {
-  "name": "簡易インベーダーゲーム",
-  "short_name": "インベーダー",
-  "description": "ブラウザで遊べるシンプルなインベーダーゲームです。",
-  "start_url": "./index.html",
+  "name": "電卓 PWA",
+  "short_name": "電卓",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#111111",
-  "theme_color": "#00ff00",
+  "background_color": "#333333",
+  "theme_color": "#333333",
+  "description": "シンプルな電卓のプログレッシブウェブアプリです。",
   "icons": [
     {
       "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
+    },
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ]
 }
+

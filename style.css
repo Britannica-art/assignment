@@ -1,116 +1,115 @@
+/* 基本的なスタイルとフォントのインポート */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-    background-color: #111;
-    color: #fff;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #616161, #9bc5c3);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    /* タッチ操作での画面スクロールを無効化 */
-    overflow: hidden; 
+    min-height: 100vh;
 }
 
-.container {
-    text-align: center;
-    position: relative;
+/* 電卓全体のコンテナ */
+.calculator {
     width: 100%;
-    max-width: 600px; /* キャンバスの幅に合わせる */
-}
-
-h1 {
-    color: #0f0;
-}
-
-canvas {
-    background-color: #000;
-    border: 2px solid #0f0;
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-}
-
-/* メッセージと操作方法を重ねて表示するためのラッパー */
-#overlay {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-}
-
-#message {
-    font-size: 48px;
-    color: #f00;
-    display: none; /* 最初は非表示 */
-    text-shadow: 2px 2px #000;
-    margin-bottom: 20px;
-}
-
-#controls-info {
-    display: block; /* 最初は表示 */
-    background-color: rgba(0, 50, 0, 0.7);
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: 1px solid #0f0;
-    max-width: 300px;
-    margin: 0 auto;
-    text-align: left;
-    line-height: 1.6;
-}
-#controls-info h2 {
-    margin-top: 0;
-    text-align: center;
-}
-
-#startButton {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #0f0;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-#startButton:hover {
-    background-color: #fff;
-}
-
-/* スマホ用操作ボタン */
-#touch-controls {
+    max-width: 360px;
+    background-color: #212121;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
     display: flex;
+    flex-direction: column;
+}
+
+/* 計算結果表示画面 */
+.display {
+    background-color: #333;
+    color: white;
+    padding: 2rem 1.5rem;
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    max-width: 400px;
-    margin: 15px auto 0;
 }
 
-#touch-controls button {
-    width: 70px;
-    height: 70px;
-    font-size: 24px;
-    background-color: rgba(0, 255, 0, 0.3);
-    color: #fff;
-    border: 2px solid #0f0;
-    border-radius: 50%;
-    user-select: none; /* テキスト選択を防ぐ */
-    -webkit-user-select: none;
+.previous-operand {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    min-height: 32px;
 }
 
-#touch-controls button:active {
-    background-color: rgba(0, 255, 0, 0.6);
+.current-operand {
+    font-size: 2.5rem;
+    font-weight: 500;
 }
 
-#fire-btn {
-    font-size: 20px;
-    font-weight: bold;
-    background-color: rgba(255, 0, 0, 0.3);
-    border-color: #f00;
+/* ボタンのグリッドレイアウト */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px; /* ボタンの間に細い線を作る */
+    background-color: #424242;
 }
-#fire-btn:active {
-     background-color: rgba(255, 0, 0, 0.6);
+
+/* ボタンの共通スタイル */
+.buttons button {
+    font-size: 1.5rem;
+    padding: 1.25rem 0;
+    border: none;
+    background-color: #424242;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.buttons button:hover {
+    background-color: #616161;
+}
+
+.buttons button:active {
+    background-color: #757575;
+}
+
+/* 横に2マス分のボタン */
+.span-two {
+    grid-column: span 2;
+}
+
+/* 演算子ボタンのスタイル */
+.buttons button[data-operator] {
+    background-color: #ff9800;
+}
+
+.buttons button[data-operator]:hover {
+    background-color: #fb8c00;
+}
+
+/* ACボタンとCボタンのスタイル */
+.buttons button[data-all-clear],
+.buttons button[data-delete] {
+    background-color: #757575;
+}
+
+.buttons button[data-all-clear]:hover,
+.buttons button[data-delete]:hover {
+    background-color: #9e9e9e;
+}
+
+/* =ボタンのスタイル */
+.buttons button[data-equals] {
+    background-color: #4caf50;
+}
+
+.buttons button[data-equals]:hover {
+    background-color: #43a047;
 }
